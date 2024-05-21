@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doo1rhgw1eyf7"
-path="res://.godot/imported/grassHalf_left.png-3eec9c08d4a331a891a98c61d85d5ac0.ctex"
+uid="uid://civ43o27jhv5w"
+path="res://.godot/imported/TileSetGrass.png-f269614da7e7f0719eea980f616c434b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Terrain/Grass/grassHalf_left.png"
-dest_files=["res://.godot/imported/grassHalf_left.png-3eec9c08d4a331a891a98c61d85d5ac0.ctex"]
+source_file="res://Assets/Terrain/Grass/TileSetGrass.png"
+dest_files=["res://.godot/imported/TileSetGrass.png-f269614da7e7f0719eea980f616c434b.ctex"]
 
 [params]
 
