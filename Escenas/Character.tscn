@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://doa41sndjry52"]
+
+[ext_resource type="Texture2D" uid="uid://ckysrh51nwioh" path="res://Assets/Characters/Character_Green/alienGreen.png" id="1_hit05"]
+[ext_resource type="Script" path="res://Scripts/Character.gd" id="1_kiyyf"]
+[ext_resource type="Texture2D" uid="uid://bt63hwnuxn3c5" path="res://Assets/Characters/Character_Green/alienGreen_walk1.png" id="1_xeww6"]
+[ext_resource type="Texture2D" uid="uid://fgghsadg2go1" path="res://Assets/Characters/Character_Green/alienGreen_walk2.png" id="2_xoucd"]
+[ext_resource type="Texture2D" uid="uid://xnbbe8ds28wg" path="res://Assets/Characters/Character_Green/alienGreen_stand.png" id="3_kww6b"]
+
+[sub_resource type="Animation" id="Animation_y7ggw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_hit05")]
+}
+
+[sub_resource type="Animation" id="Animation_ep527"]
+resource_name = "Run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_xeww6"), ExtResource("2_xoucd"), ExtResource("3_kww6b")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vw0g"]
+_data = {
+"RESET": SubResource("Animation_y7ggw"),
+"Run": SubResource("Animation_ep527")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xglso"]
+size = Vector2(38, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rk6bh"]
+size = Vector2(34, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hbdv"]
+size = Vector2(43, 85)
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_kiyyf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hit05")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_1vw0g")
+}
+autoplay = "RESET"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 2)
+shape = SubResource("RectangleShape2D_xglso")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 45)
+shape = SubResource("RectangleShape2D_rk6bh")
+
+[node name="AreaCuerpo" type="Area2D" parent="."]
+
+[node name="Cuerpo" type="CollisionShape2D" parent="AreaCuerpo"]
+position = Vector2(-1.5, -0.5)
+shape = SubResource("RectangleShape2D_4hbdv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="AreaCuerpo" to="." method="_on_area_cuerpo_body_entered"]

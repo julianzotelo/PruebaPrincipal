@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwyvbhu1i7nkm"]
+
+[ext_resource type="Script" path="res://Scripts/Slime.gd" id="1_akjc2"]
+[ext_resource type="Texture2D" uid="uid://dlgluqsmgbqtx" path="res://Assets/Enemies/Slime/slime.png" id="1_pdox2"]
+[ext_resource type="Texture2D" uid="uid://chrlbjbh24xv4" path="res://Assets/Enemies/Slime/slime_walk.png" id="2_ayy0c"]
+
+[sub_resource type="Animation" id="Animation_lql2k"]
+resource_name = "move"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_pdox2"), ExtResource("2_ayy0c")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_sgs15"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_pdox2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bq6oc"]
+_data = {
+"RESET": SubResource("Animation_sgs15"),
+"move": SubResource("Animation_lql2k")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxa02"]
+size = Vector2(22.3114, 37.9953)
+
+[node name="Slime" type="CharacterBody2D"]
+script = ExtResource("1_akjc2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("1_pdox2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_bq6oc")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.170538, 5.85594)
+rotation = -1.55509
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_pxa02")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(245, 0)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+target_position = Vector2(-245, 0)

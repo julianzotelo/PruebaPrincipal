@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh613xxbso1bh"]
+
+[ext_resource type="Script" path="res://Scripts/Interface.gd" id="1_vhm1i"]
+[ext_resource type="Texture2D" uid="uid://b5ti08su668fi" path="res://Assets/HUD/hudHeart_full.png" id="2_ersnv"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_vhm1i")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 48.0
+offset_top = 29.0
+offset_right = 88.0
+offset_bottom = 69.0
+size_flags_horizontal = 4
+
+[node name="text" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Score
+"
+
+[node name="Score" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+offset_left = 944.0
+offset_top = 52.0
+offset_right = 1336.0
+offset_bottom = 180.0
+scale = Vector2(0.4, 0.4)
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_ersnv")
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_ersnv")
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_ersnv")
