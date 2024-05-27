@@ -6,3 +6,5 @@ func set_title(tittle):
 
 func _on_button_pressed():
 	get_tree().change_scene_to_file("res://Escenas/grass_platform.tscn")
+	Global.player_life = 3
+	Global.Score = 0
