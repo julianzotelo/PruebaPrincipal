@@ -64,7 +64,8 @@ func _physics_process(delta):
 	velocity.x = direction * SPEED
 	if direction:
 		velocity.x = direction * SPEED
-		$Sprite2D/AnimationPlayer.play("Run")
+		if not $Sprite2D/AnimationPlayer.current_animation == 'char_kill':
+			$Sprite2D/AnimationPlayer.play("Run")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
@@ -74,6 +75,7 @@ func _on_area_2d_body_entered(body):
 		body.vive=false;
 		body.velocity.x = 0
 		body.animation_player.play("Dead")
+		$Sprite2D/AnimationPlayer.play("char_kill")
 
 func _on_area_cuerpo_body_entered(body):
 	var time_now = Time.get_ticks_msec()

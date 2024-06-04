@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://doa41sndjry52"]
+[gd_scene load_steps=16 format=3 uid="uid://doa41sndjry52"]
 
 [ext_resource type="Texture2D" uid="uid://ckysrh51nwioh" path="res://Assets/Characters/Character_Green/alienGreen.png" id="1_hit05"]
 [ext_resource type="Script" path="res://Scripts/Character.gd" id="1_kiyyf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://fgghsadg2go1" path="res://Assets/Characters/Character_Green/alienGreen_walk2.png" id="2_xoucd"]
 [ext_resource type="Texture2D" uid="uid://xnbbe8ds28wg" path="res://Assets/Characters/Character_Green/alienGreen_stand.png" id="3_kww6b"]
 [ext_resource type="Texture2D" uid="uid://nvf8e2642sq6" path="res://Assets/Characters/Character_Green/alienGreen_hurt.png" id="6_66o3k"]
+[ext_resource type="Texture2D" uid="uid://ux5dp3sjc5o8" path="res://Assets/Characters/Character_Green/alienGreen_kill.png" id="7_d67tg"]
 
 [sub_resource type="Animation" id="Animation_y7ggw"]
 length = 0.001
@@ -78,10 +79,39 @@ tracks/1/keys = {
 "values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_s7b70"]
+resource_name = "char_kill"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("7_d67tg"), ExtResource("1_hit05")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vw0g"]
 _data = {
 "RESET": SubResource("Animation_y7ggw"),
 "Run": SubResource("Animation_ep527"),
+"char_kill": SubResource("Animation_s7b70"),
 "hurt": SubResource("Animation_oc7nt")
 }
 
